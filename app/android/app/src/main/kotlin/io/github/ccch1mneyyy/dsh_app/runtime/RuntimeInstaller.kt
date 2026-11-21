@@ -44,7 +44,8 @@ class RuntimeInstaller(
     private val engineUpgrade = EngineUpgrade(baseDir, sync)
 
     fun installedVersion(): String? =
-        if (!engineUpgrade.isPending() && rootfs.isDirectory && versionFile.isFile) versionFile.readText().trim().ifEmpty { null } else null
+        if (RootChroot.root(context) != null) manifest.runtimeVersion
+        else if (!engineUpgrade.isPending() && rootfs.isDirectory && versionFile.isFile) versionFile.readText().trim().ifEmpty { null } else null
 
     fun isCurrent(): Boolean = installedVersion() == manifest.runtimeVersion
 
