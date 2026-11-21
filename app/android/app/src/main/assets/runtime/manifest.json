@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "runtimeVersion": "kali-1",
+  "abi": "arm64-v8a",
+  "archives": [],
+  "dshVersion": "0.1.5-rc.2",
+  "nodeVersion": "24.18.0",
+  "launch": {
+    "argv": [
+      "/bin/bash",
+      "-lc",
+      "echo $$ > /tmp/dsh-web.pid; exec /usr/local/bin/dsh web --host 127.0.0.1 --port {PORT} --trusted-host 127.0.0.1:{PORT} --no-open"
+    ],
+    "env": {}
+  }
+}
