@@ -1,4 +1,6 @@
 name: apk
+permissions:
+  contents: write
 on:
   workflow_dispatch:
   push:
@@ -35,3 +37,10 @@ jobs:
         with:
           name: apk-arm64
           path: app/build/app/outputs/flutter-apk/*.apk
+
+      - name: publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: dsh-go kali ${{ github.run_number }}
+          files: app/build/app/outputs/flutter-apk/*.apk
