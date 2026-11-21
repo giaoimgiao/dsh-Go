@@ -58,6 +58,10 @@ class RuntimeInstaller(
      * whatever cannot and installs anyway.
      */
     fun install(dropKept: Boolean = false, onProgress: (Long, Long) -> Unit) {
+        if (RootChroot.root(context) != null) {
+            onProgress(0, 0)
+            return
+        }
         // A reset killed halfway finishes first, so what it keeps is in runtime-keep for the restore.
         settleReset(baseDir, retiredDir, keepDir, dropKept, sync)
         baseDir.mkdirs()
