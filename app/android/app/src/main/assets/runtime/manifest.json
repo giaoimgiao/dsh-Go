@@ -11,7 +11,7 @@
     "argv": [
       "/bin/bash",
       "-lc",
-      "echo $$ &gt; /tmp/dsh-web.pid; exec /usr/local/bin/dsh web --host 127.0.0.1 --port {PORT} --trusted-host 127.0.0.1:{PORT} --no-open"
+      "echo $$ > /tmp/dsh-web.pid; exec /usr/local/bin/dsh web --host 127.0.0.1 --port {PORT} --trusted-host 127.0.0.1:{PORT} --no-open"
     ],
     "env": {}
   }
