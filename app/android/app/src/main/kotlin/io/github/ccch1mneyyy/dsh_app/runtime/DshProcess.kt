@@ -207,6 +207,13 @@ class DshProcess(
             env.putAll(tawcPlan.environment)
         }
 
+        RootChroot.command(context, port)?.let { kali ->
+            builder.command(kali)
+            env.clear()
+            env["PATH"] = "/system/bin:/system/xbin"
+            listener.onLog("[dsh-app] root chroot launch: " + RootChroot.root(context), "system")
+        }
+
         readyReported = false
         if (directFallbackReason == DirectLaunch.INCOMPATIBLE) listener.onLog("[dsh-app] direct fallback: proot hard-link backing files need compatible launch; user preference and data retained", "system")
         if (directFallbackReason == DirectLaunch.FAILED) listener.onLog("[dsh-app] direct fallback: direct launch failed before with this runtime; turn Direct on again to retry", "system")
