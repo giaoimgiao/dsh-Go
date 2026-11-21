@@ -33,7 +33,7 @@ object RootChroot {
             "mountpoint -q '$q/sdcard' || mount --bind /sdcard '$q/sdcard' 2>/dev/null; "
         val script = mounts +
             "echo \$\$ > '$q/tmp/dsh-web.pid'; " +
-            "exec chroot '$q' /bin/bash -lc '" + guest + "'"
+            "exec chroot '$q' /bin/sh -c '" + guest + "'"
         return listOf("su", "-c", script)
     }
 }
