@@ -18,7 +18,8 @@ object RootChroot {
             .map { it.trim() }
             .firstOrNull { it.isNotEmpty() && !it.startsWith("#") }
             ?: return null
-        return if (File(path, "etc/os-release").isFile) path else null
+        // The app uid cannot stat Termux-owned rootfs paths (0700); su does the probing.
+        return path
     }
 
     /** Full `su -c` command that mounts the kernel filesystems and execs `dsh web`. */
